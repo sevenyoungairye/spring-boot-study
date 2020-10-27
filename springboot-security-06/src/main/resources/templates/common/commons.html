@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      >
+
+    <!--头部菜单栏展示-->
+
+    <div th:fragment="head">
+
+        <div>
+            <!--未登录显示登录按钮-->
+            <div sec:authorize="!isAuthenticated()">
+                <a th:href="@{/login}">登录</a>
+            </div>
+
+            <!--已经登录显示注销按钮-->
+            <div sec:authorize="isAuthenticated()">
+                <label sec:authentication="name"></label> 您好！
+                <form th:action="@{/logout}">
+                    <input type="submit" value="注销"/>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</html>
