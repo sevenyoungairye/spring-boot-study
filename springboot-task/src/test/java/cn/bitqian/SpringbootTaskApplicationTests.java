@@ -27,8 +27,8 @@ class SpringbootTaskApplicationTests {
         mailMessage.setSubject("hello bitqian");
         mailMessage.setText("send a simple email using springboot.. by qq");
 
-        mailMessage.setFrom("849033901@qq.com");
-        mailMessage.setTo("849033901@qq.com");
+        mailMessage.setFrom("999999@qq.com");
+        mailMessage.setTo("999999@qq.com");
         mailSender.send(mailMessage);
 
     }
