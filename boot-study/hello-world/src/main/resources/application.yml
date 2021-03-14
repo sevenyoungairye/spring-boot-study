@@ -1,0 +1,11 @@
+# springboot
+server:
+  port: 8888
+
+spring:
+  application:
+    name: hello-world
+
+mycar:
+  price: 100000
+  brand: byd
