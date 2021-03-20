@@ -3,6 +3,8 @@ package top.bitqian.hello.controller;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import top.bitqian.hello.constant.OssConstantConfig;
+import top.bitqian.hello.constant.OssLoadConstant;
 import top.bitqian.hello.entity.Car;
 import top.bitqian.hello.entity.Person;
 import top.bitqian.hello.entity.Pet;
@@ -51,10 +53,28 @@ public class HelloController {
     private Car myCar;
 
     @GetMapping("/car")
-    public Car getCar(@Qualifier("car") Car car) { // param, bean config value.. is null by Qualifier
+    public Car getCar(@Qualifier("car") Car car) { // param, bean config value.. is empty props by Qualifier
 
+        // car 里面的属性值不会被yml里面的值绑定, 但是car会被初始化
         System.out.println(car);
         return myCar;
     }
 
+    @Resource
+    private OssConstantConfig ossConstantConfig;
+
+    @GetMapping("/oss-yml")
+    public Object getOssConfigByYml() {
+
+        return this.ossConstantConfig;
+    }
+
+    @Resource
+    private OssLoadConstant ossLoadConstant;
+
+    @GetMapping("/oss-load")
+    public Object getOssLoad() {
+
+        return ossLoadConstant;
+    }
 }
