@@ -12,6 +12,7 @@
     <modules>
         <module>hello-world</module>
         <module>tk-mapper</module>
+        <module>hello-web</module>
     </modules>
 
     <properties>
