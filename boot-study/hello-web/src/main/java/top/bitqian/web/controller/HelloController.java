@@ -1,6 +1,7 @@
 package top.bitqian.web.controller;
 
 import org.springframework.web.bind.annotation.*;
+import top.bitqian.web.entity.Person;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -106,6 +107,11 @@ public class HelloController {
         map.put("empAge", empAge);
 
         return map;
+    }
+
+    @PostMapping("/person")
+    public Person person(Person p) {
+        return p;
     }
 
 }
