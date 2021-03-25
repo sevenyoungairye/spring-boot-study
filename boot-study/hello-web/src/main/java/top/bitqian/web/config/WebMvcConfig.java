@@ -4,12 +4,17 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.format.FormatterRegistry;
+import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
+import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.util.UrlPathHelper;
+import top.bitqian.web.converter.BitMessageConverter;
 import top.bitqian.web.entity.Pet;
+
+import java.util.List;
 
 /**
  * 定制化webMVC组件, 增加扩展功能
@@ -22,6 +27,18 @@ import top.bitqian.web.entity.Pet;
 
 @Configuration(proxyBeanMethods = false)
 public class WebMvcConfig implements WebMvcConfigurer {
+
+    @Override
+    public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
+        // 内容协商处理器
+        // configurer.favorParameter(true);
+    }
+
+    @Override
+    public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+        // 新增消息转换器
+        converters.add(new BitMessageConverter());
+    }
 
     // 单体应用, 表单提交restful
     @Bean
@@ -51,15 +68,15 @@ public class WebMvcConfig implements WebMvcConfigurer {
         // string convert to pet when mvc wrapper data..
         registry.addConverter(
             (PetConverter) source -> {
-                Pet p = new Pet();
                 // the format like "id,name"
                 if (!StringUtils.isEmpty(source) && source.contains(",")) {
+                    Pet p = new Pet();
                     String[] split = source.split(",");
                     p.setId(Integer.parseInt(split[0]));
                     p.setName(split[1]);
                     return p;
                 }
-                return p;
+                return null;
             }
         );
     }

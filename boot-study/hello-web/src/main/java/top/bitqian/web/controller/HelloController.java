@@ -110,7 +110,7 @@ public class HelloController {
     }
 
     @PostMapping("/person")
-    public Person person(Person p) {
+    public Person person(@RequestBody Person p) {
         return p;
     }
 
