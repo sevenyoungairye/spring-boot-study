@@ -6,6 +6,7 @@ import top.boy.entity.Student;
 import top.boy.mapper.StudentMapper;
 
 import javax.annotation.Resource;
+import java.util.Arrays;
 
 /**
  * @author echo lovely
@@ -27,5 +28,16 @@ public class StudentController {
         return studentMapper.selectOne(null);
     }
 
+    @GetMapping("/batch/upd")
+    public String studentList() {
+
+        studentMapper.batchUpdateStu(Arrays.asList(
+                new Student(1, "one", 18, null),
+                new Student(2, "two", 19, null),
+                new Student(3, "three", 20, null)
+        ));
+
+        return "ok";
+    }
 
 }

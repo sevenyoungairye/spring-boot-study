@@ -8,4 +8,37 @@
     <result column="age" jdbcType="INTEGER" property="age" />
     <result column="birthday" jdbcType="DATE" property="birthday" />
   </resultMap>
+
+  <!-- update name = ?, age = ? where id in (?, ?, ?) -->
+  <!--
+        update student set
+          name =case when id=? then ? when id=? then ? when id=? then ? end,
+          age =case when id=? then ? when id=? then ? when id=? then ? end
+          where id in ( ? , ? , ? )
+   -->
+  <update id="batchUpdateStu" parameterType="java.util.List">
+    update student
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="name =case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="item.name !=null and item.name != ''">
+            when id=#{item.id} then #{item.name}
+          </if>
+        </foreach>
+      </trim>
+
+      <trim prefix="age =case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="item.age !=null and item.age >= 0">
+            when id=#{item.id} then #{item.age}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+
+    where id in
+    <foreach collection="list" index="index" item="item" separator="," open="(" close=")">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
 </mapper>
