@@ -4,8 +4,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.format.FormatterRegistry;
+import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.util.StringUtils;
+import org.springframework.web.accept.ContentNegotiationStrategy;
+import org.springframework.web.accept.HeaderContentNegotiationStrategy;
+import org.springframework.web.accept.ParameterContentNegotiationStrategy;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
@@ -14,7 +18,10 @@ import org.springframework.web.util.UrlPathHelper;
 import top.bitqian.web.converter.BitMessageConverter;
 import top.bitqian.web.entity.Pet;
 
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 定制化webMVC组件, 增加扩展功能
@@ -31,7 +38,22 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
         // 内容协商处理器
-        // configurer.favorParameter(true);
+        // header
+        HeaderContentNegotiationStrategy headerNegotiation = new HeaderContentNegotiationStrategy();
+
+        // define a mediaType for extension
+        Map<String, MediaType> mediaTypeMap = new HashMap<>();
+        // header-> Accept:application/json
+        mediaTypeMap.put("json", MediaType.APPLICATION_JSON);
+        // header-> Accept:application/xml
+        mediaTypeMap.put("xml", MediaType.APPLICATION_XML);
+        // 自定扩展
+        // header-> Accept:application/x-bit
+        mediaTypeMap.put("x-bit", MediaType.parseMediaType("application/x-bit"));
+        ParameterContentNegotiationStrategy paramNegotiation = new ParameterContentNegotiationStrategy(mediaTypeMap);
+
+        List<ContentNegotiationStrategy> strategyList = Arrays.asList(headerNegotiation, paramNegotiation);
+        configurer.favorParameter(true).strategies(strategyList);
     }
 
     @Override

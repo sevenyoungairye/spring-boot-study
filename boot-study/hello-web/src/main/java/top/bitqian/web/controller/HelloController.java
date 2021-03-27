@@ -114,4 +114,23 @@ public class HelloController {
         return p;
     }
 
+    @GetMapping("/map/1")
+    public Map<String, Object> getMap() {
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("a", "1");
+        map.put("b", "1");
+        map.put("c", "1");
+
+        return map;
+    }
+
+    @GetMapping("/p1")
+    public Person getPer() {
+        // {remoteAddr}/p1?format=json, by default, param is 'format', response 'json data'
+        // {remoteAddr}/p1?format=xml
+        // {remoteAddr}/p1?format=x-bit
+        return new Person(1, "hh", null);
+    }
+
 }
