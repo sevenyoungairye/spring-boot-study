@@ -13,6 +13,30 @@
 
 
     <dependencies>
+        <!-- to R.. judge null.. -->
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.6</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.4.1</version>
+        </dependency>
+
+        <!-- 基于starter整合druid数据源, 普通整合需要手写config, starter可直接配置数据库连接地址 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>1.1.13</version>
+        </dependency>
+
         <dependency>
             <!-- xml parser.. -->
             <groupId>com.fasterxml.jackson.dataformat</groupId>

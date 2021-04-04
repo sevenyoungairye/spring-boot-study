@@ -21,7 +21,7 @@ import java.io.IOException;
  */
 
 @Order(value = Ordered.HIGHEST_PRECEDENCE) // 数值越小,越优先处理
-@Component
+// @Component
 public class MyHandlerException implements HandlerExceptionResolver {
     @Override
     public ModelAndView resolveException(HttpServletRequest request,

@@ -7,3 +7,45 @@ spring:
     hiddenmethod:
       filter:
         enabled: true
+
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    # all pls see: https://github.com/alibaba/druid/wiki/常见问题
+    druid:
+      url: jdbc:mysql://localhost:3306/mydatabase?serverTimezone=Asia/Shanghai
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: 123456
+      filters: stat,wall
+      filter:
+        stat:
+          enabled: true
+          slow-sql-millis: 4000
+        wall:
+          enabled: true
+          config:
+            drop-table-allow: false
+            delete-allow: false
+      # web 界面显示
+      # StatViewServlet配置，说明请参考Druid Wiki，配置_StatViewServlet配置
+      # https://github.com/alibaba/druid/wiki/%E9%85%8D%E7%BD%AE_StatViewServlet%E9%85%8D%E7%BD%AE
+      stat-view-servlet:
+        enabled: true
+        login-username: admin
+        login-password: 123456
+        reset-enable: false
+        url-pattern: '/druid/*'
+      # WebStatFilter配置，说明请参考Druid Wiki，配置_配置WebStatFilter
+      # https://github.com/alibaba/druid/wiki/%E9%85%8D%E7%BD%AE_%E9%85%8D%E7%BD%AEWebStatFilter
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+        exclusions: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
+      # Spring监控配置，说明请参考Druid Github Wiki，配置_Druid和Spring关联监控配置
+      aop-patterns: top.bitqian.web.*
+
+
+# mp
+mybatis-plus:
+  type-aliases-package: top.bitqian.web.entity
+  mapper-locations: classpath:mapper/*.xml
