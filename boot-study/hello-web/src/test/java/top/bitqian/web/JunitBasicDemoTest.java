@@ -25,6 +25,18 @@ import java.util.concurrent.TimeUnit;
 @DisplayName("junit5测试类")
 public class JunitBasicDemoTest {
 
+    // 前置条件test
+    @Test
+    void test() {
+        String str = "hhh";
+        Assumptions.assumingThat(
+            () -> true,
+            () -> Assertions.assertEquals("hhh", str)
+        );
+        Assumptions.assumeTrue(true);
+        System.out.println("Assumptions通过了会执行, 否则会被忽略, disabled..");
+    }
+
     @Test
     void testExcepting() {
         Exception e = Assertions.assertThrows(IllegalArgumentException.class, () -> hh(""));
