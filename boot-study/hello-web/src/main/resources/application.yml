@@ -49,3 +49,24 @@ spring:
 mybatis-plus:
   type-aliases-package: top.bitqian.web.entity
   mapper-locations: classpath:mapper/*.xml
+
+# actuator 性能监控
+management:
+  endpoints:
+    enabled-by-default: false # 默认开启了所有端点
+    web: # 开启web监控, 监控开启所有监控访问
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+    # 运行指标
+    metrics:
+      enabled: true
+    info:
+      enabled: true
+    beans:
+      enabled: true
+    loggers:
+      enabled: true

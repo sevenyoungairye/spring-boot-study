@@ -13,6 +13,13 @@
 
 
     <dependencies>
+
+        <!-- boot 性能监控工具, http/jwx两种方式暴露 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
         <!-- to R.. judge null.. -->
         <dependency>
             <groupId>commons-lang</groupId>
