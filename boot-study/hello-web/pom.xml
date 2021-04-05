@@ -10,11 +10,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>hello-web</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
 
 
     <dependencies>
 
-        <!-- boot 性能监控工具, http/jwx两种方式暴露 -->
+        <!-- boot 性能监控工具, http/jmx两种方式暴露 -->
+        <!-- https://docs.spring.io/spring-boot/docs/2.3.7.RELEASE/reference/html/production-ready-features.html#production-ready -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
@@ -55,5 +57,23 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <delimiters>@</delimiters>
+                    <useDefaultDelimiters>false</useDefaultDelimiters>
+                </configuration>
+            </plugin>
+        </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
 
 </project>
