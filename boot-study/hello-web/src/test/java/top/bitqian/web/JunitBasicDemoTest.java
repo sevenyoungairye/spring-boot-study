@@ -66,8 +66,8 @@ public class JunitBasicDemoTest {
 
                 Assertions.assertNotNull(lastName);
                 Assertions.assertAll("lastName",
-                        () -> Assertions.assertTrue(lastName.startsWith("l")),
-                        () -> Assertions.assertTrue(lastName.endsWith("l"))
+                    () -> Assertions.assertTrue(lastName.startsWith("l")),
+                    () -> Assertions.assertTrue(lastName.endsWith("l"))
                 );
             }
         );
