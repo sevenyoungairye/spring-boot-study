@@ -43,6 +43,14 @@ spring:
         exclusions: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
       # Spring监控配置，说明请参考Druid Github Wiki，配置_Druid和Spring关联监控配置
       aop-patterns: top.bitqian.web.*
+  boot:
+    admin:
+      client:
+        instance:
+          prefer-ip: true
+        url: http://localhost:8888
+  application:
+    name: hello-web
 
 
 # mp
@@ -53,7 +61,7 @@ mybatis-plus:
 # actuator 性能监控
 management:
   endpoints:
-    enabled-by-default: false # 默认开启了所有端点
+    # enabled-by-default: false # 默认开启了所有端点
     web: # 开启web监控, 监控开启所有监控访问
       exposure:
         include: '*'

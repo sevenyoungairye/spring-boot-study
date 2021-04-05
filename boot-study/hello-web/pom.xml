@@ -15,6 +15,13 @@
 
     <dependencies>
 
+        <!-- boot-admin 监控客户端 -->
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-starter-client</artifactId>
+            <version>2.3.1</version>
+        </dependency>
+
         <!-- boot 性能监控工具, http/jmx两种方式暴露 -->
         <!-- https://docs.spring.io/spring-boot/docs/2.3.7.RELEASE/reference/html/production-ready-features.html#production-ready -->
         <dependency>
