@@ -12,6 +12,7 @@
     <!--
         TODO: 可以和security安全框架整合, 客户端
         只监控了hello-web模块
+        pls see: https://github.com/codecentric/spring-boot-admin
     -->
     <artifactId>hello-boot-admin</artifactId>
     <description>spring boot admin to actuator many services..</description>
