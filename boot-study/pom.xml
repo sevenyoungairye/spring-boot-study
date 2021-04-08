@@ -14,6 +14,7 @@
         <module>tk-mapper</module>
         <module>hello-web</module>
         <module>hello-boot-admin</module>
+        <module>hello-starter-test</module>
     </modules>
 
     <properties>
