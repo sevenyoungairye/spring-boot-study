@@ -1,0 +1,10 @@
+# Application Runner Listeners
+org.springframework.boot.SpringApplicationRunListener=\
+top.bitqian.boot.listener.MyRunListener
+
+# Application Listeners
+org.springframework.context.ApplicationListener=\
+top.bitqian.boot.listener.MyApplicationListener
+
+org.springframework.context.ApplicationContextInitializer=\
+top.bitqian.boot.listener.MyContextInitializer
