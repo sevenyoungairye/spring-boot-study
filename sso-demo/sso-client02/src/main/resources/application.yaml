@@ -1,0 +1,11 @@
+spring:
+  thymeleaf:
+    cache: false
+  redis:
+    host: 192.168.56.10
+    port: 6379
+
+# 配置当前应用的地址, 修改host http://client02.com
+server:
+  port: 10000
+

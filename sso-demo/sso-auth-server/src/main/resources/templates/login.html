@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>请登录.. </title>
+</head>
+<body>
+
+    <form method="post" action="/doLogin">
+        <label>
+            用户名：
+            <input name="username" type="text" />
+        </label> <br/>
+        <label>
+            密码：
+            <input name="password" type="password" />
+        </label> <br/>
+        <input name="callbackUrl" type="hidden" th:value="${callbackUrl}">
+        <button type="submit">pls login..</button>
+    </form>
+
+</body>
+</html>
